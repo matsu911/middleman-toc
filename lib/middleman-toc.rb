@@ -1,8 +1,4 @@
-require 'middleman'
-require 'yaml'
-require 'middleman_toc/extension'
-require 'middleman_toc/toc'
-require 'middleman_toc/validator'
+require 'middleman-core'
 
 module MiddlemanToc
   class Page < Struct.new(:resource, :title)
@@ -54,4 +50,7 @@ module MiddlemanToc
   end
 end
 
-Middleman::Extensions.register(:toc, MiddlemanToc::Extension)
+::Middleman::Extensions.register(:toc) do
+  require 'middleman-toc/extension'
+  MiddlemanToc::Extension
+end
